@@ -1,9 +1,9 @@
 <?php namespace App\Http\Controllers\Api;
 
-use App\Http\Requests;
+use App\Http\Requests\CreateOrderRequest;
 use App\Http\Controllers\Api;
-use Illuminate\Http\Request;
 use App\Acme\Orders\OrderRepository;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 
 class OrderController extends ApiController {
@@ -11,6 +11,7 @@ class OrderController extends ApiController {
 	public $order;
 	public function __construct(OrderRepository $order) {
 		$this->order = $order;
+		$this->middleware('order.store',['only'=>'store']);
 	}
 	/**
 	 * Display a listing of the resource.
@@ -39,9 +40,10 @@ class OrderController extends ApiController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(CreateOrderRequest $request)
 	{
 		//
+		dd($request->input('customer_id'));
 		
 	}
 

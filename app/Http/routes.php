@@ -28,4 +28,5 @@ Route::group(['prefix'=>'api','middleware'=>'auth.basic'], function () {
 	Route::resource('orders','Api\OrderController');
 	Route::resource('requests','Api\CustomerRequestController');
 
+
 });
