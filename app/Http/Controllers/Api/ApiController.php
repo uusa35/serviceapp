@@ -14,7 +14,7 @@ abstract class ApiController extends Controller {
                 'items' => $items,
                 'code' => $code
             ]
-        ]);
+        ],$code);
     }
 
     public function getJsonFailure($message ='Error occurred !!', $code ='404') {
@@ -23,6 +23,6 @@ abstract class ApiController extends Controller {
                 'message' => $message,
                 'code'  => $code
             ]
-        ]);
+        ],$code);
     }
 }
