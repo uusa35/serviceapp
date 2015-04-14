@@ -42,7 +42,7 @@ class OrderController extends ApiController {
 	public function store()
 	{
 		//
-		
+
 	}
 
 	/**
