@@ -6,7 +6,12 @@ use App\Acme\Orders\OrderRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 
+<<<<<<< HEAD
 class OrderController extends Controller{
+=======
+
+class OrderController extends Controller {
+>>>>>>> 5db679a83c980a275be2167fc6fb7dd2c1518e12
 
 	use ApiMethods;
 

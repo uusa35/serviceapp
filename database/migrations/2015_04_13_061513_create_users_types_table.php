@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustomersRequestsTable extends Migration {
+class CreateUsersTypesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,13 +13,11 @@ class CreateCustomersRequestsTable extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('customers_requests', function(Blueprint $table)
+		Schema::create('users_types', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('provider_response')->default('0')->unsigned();
-			$table->integer('customer_view')->default('0')->unsigned();
-			$table->date('date');
-			$table->time("time");
+			$table->integer('user_id')->unquie();
+			$table->integer('type_id');
 			$table->timestamps();
 		});
 	}
@@ -32,7 +30,7 @@ class CreateCustomersRequestsTable extends Migration {
 	public function down()
 	{
 		//
-		Schema::drop('customers_requests');
+		Schema::drop('users_types');
 	}
 
 }
