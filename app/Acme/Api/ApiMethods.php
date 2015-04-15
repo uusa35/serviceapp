@@ -1,11 +1,10 @@
-<?php namespace App\Http\Controllers\Api;
+<?php namespace App\Acme\Api;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
-abstract class ApiController extends Controller {
+trait  ApiMethods  {
 
 	//
     public function getJsonSuccess(array $items, $code='200'){

@@ -1,12 +1,14 @@
 <?php namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\CreateOrderRequest;
-use App\Http\Controllers\Api;
+
+use App\Acme\Api\ApiMethods;
 use App\Acme\Orders\OrderRepository;
-use Illuminate\Support\Facades\Input;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 
-class OrderController extends ApiController {
+class OrderController extends Controller{
+
+	use ApiMethods;
 
 	public $order;
 	public function __construct(OrderRepository $order) {

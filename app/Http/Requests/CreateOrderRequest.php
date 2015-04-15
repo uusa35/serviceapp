@@ -1,8 +1,7 @@
 <?php namespace App\Http\Requests;
 
 use App\Http\Controllers\Api\ApiController;
-use App\Http\Requests\Request;
-use Illuminate\Support\Facades\Response;
+
 
 class CreateOrderRequest extends Request {
 
