@@ -16,8 +16,9 @@ class CreateRequestsTable extends Migration {
 		Schema::create('requests', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('provider_id');
+			$table->integer('provider_id')->unsigned();
 			$table->integer('provider_response')->default('0')->unsigned(); // 0-1-2
+			$table->integer('customer_id')->unsigned();
 			$table->integer('customer_view')->default('0')->unsigned();
 			$table->date('date');
 			$table->time("time");

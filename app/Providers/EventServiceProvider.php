@@ -11,8 +11,8 @@ class EventServiceProvider extends ServiceProvider {
 	 * @var array
 	 */
 	protected $listen = [
-		'App\Events\CreateRequest' => [
-			'App\Handlers\Events\CreateRequestHandler',
+		'App\Events\UserRegisterEvent' => [
+			'App\Handlers\Events\UserRegisterEvent@handle',
 		],
 	];
 

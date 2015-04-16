@@ -19,4 +19,10 @@ class UsersTypesRepository extends AbstractRepository {
 
     }
 
+    public function posTypeId ($type_id,$user_id) {
+        $this->model->create([
+            'type_id' => $type_id,
+            'user_id'       => $user_id
+        ]);
+    }
 }

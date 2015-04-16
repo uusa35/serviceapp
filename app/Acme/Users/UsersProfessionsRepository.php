@@ -13,10 +13,18 @@ use App\UserProfession;
 class UsersProfessionsRepository extends AbstractRepository {
 
     protected $model;
+
     public function __construct(UserProfession $model) {
 
         $this->model = $model;
 
+    }
+
+    public function postProfessionId ($profession_id,$user_id) {
+        $this->model->create([
+            'profession_id' => $profession_id,
+            'user_id'       => $user_id
+        ]);
     }
 
 }
