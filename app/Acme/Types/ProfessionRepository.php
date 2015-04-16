@@ -2,20 +2,21 @@
 /**
  * Created by PhpStorm.
  * User: usama
- * Date: 4/13/2015
- * Time: 9:38 AM
+ * Date: 4/16/2015
+ * Time: 10:06 AM
  */
 
 namespace App\Acme\Types;
 
+
 use App\Acme\AbstractRepository;
 use App\Acme\InterfaceRepository;
-use App\Type;
+use App\Profession;
 
-class TypeRepository extends AbstractRepository implements InterfaceRepository{
+class ProfessionRepository extends AbstractRepository implements InterfaceRepository{
 
     public $model;
-    public function __construct(Type $model) {
+    public function __construct(Profession $model) {
         $this->model = $model;
     }
 

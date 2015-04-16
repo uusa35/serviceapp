@@ -6,6 +6,6 @@ class UserProfession extends Model {
 
 	//
     protected $table = 'users_professions';
-    protected $guard = [];
+    protected $fillable = ['user_id','profession_id'];
 
 }

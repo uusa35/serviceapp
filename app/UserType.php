@@ -2,11 +2,11 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Type extends Model {
+class UserType extends Model {
 
 	//
-    public $table = 'users_types';
-    protected $guard = [];
+    protected  $table = 'users_types';
+    protected $fillable = ['user_id', 'type_id'];
 
 
 }

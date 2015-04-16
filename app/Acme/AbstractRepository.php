@@ -1,4 +1,6 @@
 <?php namespace App\Acme;
+use Illuminate\Support\Facades\Response;
+
 /**
  * Created by PhpStorm.
  * User: usama
@@ -26,6 +28,12 @@ abstract class AbstractRepository {
 
         return $this->model->findOrFail($id);
 
+    }
+
+    public function getAllJson() {
+        return Response::json([
+            'items' => $this->model->all()->toArray()
+        ],200);
     }
 
 }

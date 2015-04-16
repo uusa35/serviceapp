@@ -6,6 +6,6 @@ class Profession extends Model {
 
 	//
     protected $table = 'professions';
-    protected $guard = [];
+
 
 }

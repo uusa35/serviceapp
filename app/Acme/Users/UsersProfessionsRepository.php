@@ -21,7 +21,7 @@ class UsersProfessionsRepository extends AbstractRepository {
     }
 
     public function postProfessionId ($profession_id,$user_id) {
-        $this->model->create([
+         $this->model->create([
             'profession_id' => $profession_id,
             'user_id'       => $user_id
         ]);

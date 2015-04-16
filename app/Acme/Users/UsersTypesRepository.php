@@ -7,7 +7,7 @@
  */
 namespace App\Acme\Users;
 
-use App\Acme;
+use App\Acme\AbstractRepository;
 use App\UserType;
 
 class UsersTypesRepository extends AbstractRepository {
@@ -19,10 +19,10 @@ class UsersTypesRepository extends AbstractRepository {
 
     }
 
-    public function posTypeId ($type_id,$user_id) {
-        $this->model->create([
-            'type_id' => $type_id,
-            'user_id'       => $user_id
+    public function postTypeId ($type_id,$user_id) {
+         $this->model->create([
+            'type_id' =>  $type_id,
+            'user_id' => $user_id
         ]);
     }
 }

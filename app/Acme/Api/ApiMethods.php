@@ -16,12 +16,12 @@ trait  ApiMethods  {
         ],$code);
     }
 
-    public function getJsonFailure($message ='Error occurred !!', $code ='404') {
+    public function getJsonResponse($message ='Error occurred !!', $code ='404') {
         return Response::json([
-            'data' => [
+            'elements' => [
                 'message' => $message,
                 'code'  => $code
             ]
-        ],$code);
+        ],200);
     }
 }
