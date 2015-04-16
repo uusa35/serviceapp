@@ -149,7 +149,7 @@ return [
 		'Illuminate\Html\HtmlServiceProvider',
 		'Collective\Html\HtmlServiceProvider',
 		'Gvb\Whoops\ServiceProvider',
-		'Barryvdh\Debugbar\ServiceProvider',
+		//'Barryvdh\Debugbar\ServiceProvider',
 
 	],
 
@@ -198,7 +198,7 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-		'Debugbar' 	=> 'Barryvdh\Debugbar\Facade',
+		//'Debugbar' 	=> 'Barryvdh\Debugbar\Facade',
 		'Form'		=>	'Collective\Html\FormFacade',
 		'Html'		=>	'Collective\Html\HtmlFacade',
 		'Socialize' => 'Laravel\Socialite\Facades\Socialite',

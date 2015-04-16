@@ -1,21 +1,17 @@
 <?php namespace App\Http\Controllers\Api;
 
-
-use App\Acme\Api\ApiMethods;
-use App\Acme\Orders\OrderRepository;
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Response;
+use App\Acme\Users\UsersTypesRepository;
 
+use Illuminate\Http\Request;
 
-class OrderController extends Controller{
+class ProviderController extends Controller {
 
+	public $providers;
 
-	use ApiMethods;
-
-	public $order;
-	public function __construct(OrderRepository $order) {
-		$this->order = $order;
-		$this->middleware('order.store',['only'=>'store']);
+	public function __construct(UsersTypesRepository $providers) {
+		$this->providers = $providers;
 	}
 	/**
 	 * Display a listing of the resource.
@@ -25,8 +21,7 @@ class OrderController extends Controller{
 	public function index()
 	{
 		//
-		$allOrders = $this->order->model->paginate(8);
-		return $this->getJsonSuccess($allOrders->toArray());
+		return $this->providers->getProviders();
 	}
 
 	/**
@@ -37,7 +32,6 @@ class OrderController extends Controller{
 	public function create()
 	{
 		//
-
 	}
 
 	/**
@@ -48,8 +42,6 @@ class OrderController extends Controller{
 	public function store()
 	{
 		//
-		dd('procceed to store method');
-
 	}
 
 	/**
@@ -61,11 +53,6 @@ class OrderController extends Controller{
 	public function show($id)
 	{
 		//
-		$SingleOrder = $this->order->findById($id);
-		if ( ! $SingleOrder) {
-			return $this->getJsonFailure('This Order does not exist !!!');
-		}
-		return $this->getJsonSuccess($SingleOrder->toArray());
 	}
 
 	/**

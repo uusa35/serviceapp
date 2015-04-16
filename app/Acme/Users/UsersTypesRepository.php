@@ -9,6 +9,7 @@ namespace App\Acme\Users;
 
 use App\Acme\AbstractRepository;
 use App\UserType;
+use Illuminate\Support\Facades\DB;
 
 class UsersTypesRepository extends AbstractRepository {
 
@@ -24,5 +25,10 @@ class UsersTypesRepository extends AbstractRepository {
             'type_id' =>  $type_id,
             'user_id' => $user_id
         ]);
+    }
+
+    public function getProviders() {
+        return DB::table('users')
+                ->join('users_types', 'users.id', '=', 'users_types.user_id')->join('users_professions','users.id','=','users_professions.user_id')->get();
     }
 }

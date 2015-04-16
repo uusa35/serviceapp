@@ -2,9 +2,11 @@
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use App\Acme\Api\ApiMethods;
 
 class Authenticate {
 
+	use ApiMethods;
 	/**
 	 * The Guard implementation.
 	 *
@@ -36,12 +38,13 @@ class Authenticate {
 		{
 			if ($request->ajax())
 			{
-				return response('Unauthorized.', 401);
+				//return response('Unauthorized.', 401);
+				return $this->getJsonResponse('Unauthorized','404');
 			}
 			else
 			{
-				//return redirect()->guest('auth/login');
-				return response('Unauthorized.', 401);
+				return $this->getJsonResponse('Unauthorized','401');
+				//return response('Unauthorized.', 401);
 			}
 		}
 

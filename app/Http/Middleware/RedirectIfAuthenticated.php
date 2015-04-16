@@ -2,10 +2,12 @@
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use App\Acme\Api\ApiMethods;
 use Illuminate\Http\RedirectResponse;
 
 class RedirectIfAuthenticated {
 
+	use ApiMethods;
 	/**
 	 * The Guard implementation.
 	 *
@@ -35,7 +37,8 @@ class RedirectIfAuthenticated {
 	{
 		if ($this->auth->check())
 		{
-			return new RedirectResponse(url('/home'));
+			return $this->getJsonResponse('Not Allowed !!','404');
+			//return new RedirectResponse(url('/home'));
 		}
 
 		return $next($request);

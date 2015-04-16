@@ -1,6 +1,6 @@
 <?php namespace App\Http\Middleware;
 
-use App\Http\Controllers\Api\ApiController;
+use App\Acme\Api\ApiMethods;
 use App\Http\Requests\CreateOrderRequest;
 use Closure;
 use Illuminate\Support\Facades\Response;
@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class BeforeOrderStore extends  ApiController{
 
+	use ApiMethods;
 	/**
 	 * Handle an incoming request.
 	 *
@@ -27,7 +28,7 @@ class BeforeOrderStore extends  ApiController{
 
 		if($validator->fails()) {
 			//return 'failure to complete the request';
-			return $this->getJsonFailure($validator->messages());
+			return $this->getJsonResponse($validator->messages());
 		}
 
 		return $next($request);
