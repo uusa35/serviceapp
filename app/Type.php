@@ -6,6 +6,6 @@ class Type extends Model {
 
 	//
     protected $table = 'types';
-    protected $guard = ['created_at','updated_at'];
+    protected $hidden = ['created_at','updated_at'];
 
 }

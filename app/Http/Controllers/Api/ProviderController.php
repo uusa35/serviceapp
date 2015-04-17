@@ -20,7 +20,7 @@ class ProviderController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		// return all users subscribed as providers
 		return $this->providers->getProviders();
 	}
 

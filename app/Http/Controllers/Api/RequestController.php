@@ -1,15 +1,24 @@
 <?php namespace App\Http\Controllers\Api;
 
 
+use App\Acme\Users\UserRepository;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+use App\Acme\Orders\OrderRepository;
+use Illuminate\Support\Facades\Auth;
 
 class RequestController extends Controller {
 
+	public $order;
+	public $customer;
+	public $provider;
 
-
+	public function __construct(OrderRepository $order, UserRepository $provider) {
+		$this->order = $order;
+		$this->customer = Auth::id();
+		$this->provider = $provider;
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -17,10 +26,7 @@ class RequestController extends Controller {
 	 */
 	public function index()
 	{
-		///*
-		// get all providers
-		//*/
-
+		//
 
 
 	}
@@ -33,8 +39,8 @@ class RequestController extends Controller {
 	public function create()
 	{
 		//
-	}
 
+	}
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -43,6 +49,7 @@ class RequestController extends Controller {
 	public function store()
 	{
 		//
+		//$this->provider->getProviderById($provider_id);
 	}
 
 	/**

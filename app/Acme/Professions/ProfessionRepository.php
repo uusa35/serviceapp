@@ -6,7 +6,7 @@
  * Time: 10:06 AM
  */
 
-namespace App\Acme\Types;
+namespace App\Acme\Professions;
 
 
 use App\Acme\AbstractRepository;

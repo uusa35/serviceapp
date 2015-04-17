@@ -8,13 +8,15 @@
 namespace App\Acme\Users;
 
 use App\Acme\AbstractRepository;
+use App\User;
 use App\UserType;
 use Illuminate\Support\Facades\DB;
 
 class UsersTypesRepository extends AbstractRepository {
 
     protected $model;
-    public function __construct(UserType $model) {
+    public $provider;
+    public function __construct(UserType $model, User $provider) {
 
         $this->model = $model;
 
@@ -31,4 +33,11 @@ class UsersTypesRepository extends AbstractRepository {
         return DB::table('users')
                 ->join('users_types', 'users.id', '=', 'users_types.user_id')->join('users_professions','users.id','=','users_professions.user_id')->get();
     }
+
+    public function findProviderById($id) {
+        return User::find($id);
+    }
+
+
+
 }

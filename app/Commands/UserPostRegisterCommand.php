@@ -19,6 +19,7 @@ class UserPostRegisterCommand extends Command implements SelfHandling {
 	public function __construct($request,$user_id)
 	{
 		//
+
 		$this->type_id = $request->get('type_id');
 		$this->profession_id = $request->get('profession_id');
 		$this->user_id = $user_id;
