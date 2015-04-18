@@ -2,98 +2,79 @@
 
 
 use App\Acme\Users\UserRepository;
-use App\Http\Requests;
+use App\Acme\Requests\RequestsRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Acme\Orders\OrderRepository;
 use Illuminate\Support\Facades\Auth;
+use App\Acme\Api\ApiMethods;
 
 class RequestController extends Controller {
 
-	public $order;
-	public $customer;
-	public $provider;
+	public $requestRepo;
 
-	public function __construct(OrderRepository $order, UserRepository $provider) {
-		$this->order = $order;
+	use ApiMethods;
+
+	public function __construct(RequestsRepository $request) {
+
 		$this->customer = Auth::id();
-		$this->provider = $provider;
+		$this->requestRepo = $request;
+		$this->middleware('post.create.request',['only'=>'postCreateRequest']);
 	}
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function getProvider($provider_id,$status)
 	{
-		//
+		// all pending requests for a provider == 0 pending / 1 approved / 2 rejected
+		$requestProvider = $this->requestRepo->getProviderRequests($provider_id,$status)->toArray();
+		if(!$requestProvider) {
+			return $this->getJsonResponse();
+		}
+		return $this->getJsonSuccess($requestProvider,'200');
 
+	}
+
+	public function getCustomer($status) {
+		// Inbox for Customer : all approved requests only == 1
+		$requestCustomer = $this->requestRepo->getCustomerRequests($status)->toArray();
+		if (! $requestCustomer) {
+			return $this->getJsonResponse();
+		}
+		return $this->getJsonSuccess($requestCustomer,'200');
 
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * show
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function getShowRequest($id)
 	{
 		//
-
+		return $this->getJsonSuccess($this->requestRepo->getRequest($id));
 	}
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function postCreateRequest(Request $request)
 	{
-		//
-		//$this->provider->getProviderById($provider_id);
+		// provider_id
+		$request = array_add($request,'customer_id',Auth::id());
+		$request = array_add($request, 'provider_response','0');
+
+		if(! $this->requestRepo->model->create($request->all())) {
+			return $this->getJsonResponse('Can not create Request !!');
+		}
+
+		return $this->getJsonResponse('Request Created successfully !!','200');
+
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
 
 }

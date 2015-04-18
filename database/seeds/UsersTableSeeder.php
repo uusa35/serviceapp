@@ -18,14 +18,14 @@ class UsersTableSeeder extends Seeder {
         $faker = Faker\Factory::create();
 
             User::create([
-                'name'              => $faker->name('usama'),
+                'name'              => $faker->name(),
                 'email'             => 'uusa35@gmail.com',
                 'password'          => Hash::make('123'),
                 'area'              => $faker->word(1),
 
             ]);
             User::create([
-                'name'              => $faker->name('test'),
+                'name'              => $faker->name(),
                 'email'             => 'test@test.com',
                 'password'          => Hash::make('123'),
                 'area'              => $faker->word(1),

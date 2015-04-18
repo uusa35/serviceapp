@@ -8,7 +8,7 @@
  */
 
 use Illuminate\Database\Seeder as Seeder;
-use App\UserType;
+use App\Type;
 
 class TypesTableSeeder extends Seeder {
 
@@ -16,7 +16,7 @@ class TypesTableSeeder extends Seeder {
     public function run () {
 
         DB::table('types')->truncate();
-        $faker = Faker\Factory::create();
+        //$faker = Faker\Factory::create();
 
             Type::create([
                 'type'              => 'provider',

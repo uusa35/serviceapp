@@ -26,7 +26,7 @@ class UsersProfessionsTableSeeder extends Seeder {
                 'user_id'              => 1,
                 'profession'           => 'carpenter'
             ]);
-        $this->command->info('UsersTypes table seeded!');
+        $this->command->info('User Professions table seeded!');
     }
 
 }

@@ -6,6 +6,8 @@ class Request extends Model {
 
 	//
     protected $table = 'requests';
-    protected $guard = [''];
+    public $fillable = ['provider_id','customer_id','date','time','description','provider_response'];
+    protected $hidden = ['created_at','updated_at'];
+
 
 }

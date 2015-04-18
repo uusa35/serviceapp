@@ -1,10 +1,8 @@
 <?php namespace App\Http\Requests;
 
-use App\Http\Controllers\Api\ApiController;
+use App\Http\Requests\Request;
 
-
-class CreateOrderRequest extends Request {
-
+class CreateRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -26,11 +24,10 @@ class CreateOrderRequest extends Request {
 		return [
 			//
 			'provider_id' 	=> 'required|integer',
-			'customer_id'	=> 'required|integer',
+			'description'	=> 'required|min:5',
 			'time'			=> 'required',
 			'date'			=> 'required'
 		];
 	}
-
 
 }

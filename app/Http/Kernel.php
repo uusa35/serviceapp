@@ -27,7 +27,7 @@ class Kernel extends HttpKernel {
 		'auth' => 'App\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
-		'order.store' => 'App\Http\Middleware\BeforeOrderStore',
+		'post.create.request' => 'App\Http\Middleware\BeforePostCreateRequestMiddleware',
 	];
 
 }

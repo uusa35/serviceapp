@@ -64,6 +64,7 @@ class AuthController extends Controller {
 	}
 
 	public function getRegister() {
+		// data required for the registration form
 		$types = $this->type->getAll()->toArray();
 		$professions = $this->profession->getAll()->toArray();
 
@@ -84,5 +85,18 @@ class AuthController extends Controller {
 		return $this->getJsonResponse('Registeration Success','200');
 		//return redirect($this->redirectPath());
 	}
+
+	protected function getFailedLoginMessage()
+	{
+		return 'These credentials do not match our records.';
+	}
+
+	public function getLogout()
+	{
+		$this->auth->logout();
+		// return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
+		return $this->getJsonResponse('Logout Success !!','200');
+	}
+
 
 }

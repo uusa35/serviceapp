@@ -28,6 +28,24 @@
  * within the origin method or controller we write this : $this->dispatch(TheCommand(all vars for the constructor))
  * */
 
+/*
+ * PROVIDER
+ * inbox
+ * 	all pending requests
+ * sent
+ * all approved & rejected requests
+ *
+ *
+ * CUSTOMERS
+ * All Providers Page
+ * 	btn Create a Request
+ * 	a form to specify the date + time + description
+ * inbox
+ * 	all requests that are approved by a provider
+ * sent
+ * all requests made by the customer no matter the response is
+ * */
+
 //Route::get('/', 'WelcomeController@index');
 //
 //Route::get('home', 'HomeController@index');
@@ -39,9 +57,15 @@ Route::controllers([
 
 Route::group(['prefix'=>'api','middleware'=>'auth.basic'], function () {
 
-	//Route::resource('users','UserController');
-	Route::resource('orders','Api\OrderController',['only'=>['index','show','store']]);
-	Route::resource('requests','Api\RequestController',['only'=>['index','store','show','create']]);
+	// route to get a provider requests
+	Route::get('requests/provider/{id}/{status}','Api\RequestController@getProvider');
+	// route to get a customer approved requests - will appear in the Customer Inbox
+	Route::get('requests/customer/{status}','Api\RequestController@getCustomer');
+	// route for a customer creating new request
+	Route::post('requests/customer/create','Api\RequestController@postCreateRequest');
+	// route to show a request
+	Route::get('requests/{id}','Api\RequestController@getShowRequest');
+	// show all providers - Create A Request Page
 	Route::resource('providers','Api\ProviderController',['only'=>'index']);
 
 

@@ -8,7 +8,7 @@
  */
 
 use Illuminate\Database\Seeder as Seeder;
-use App\UserType;
+use App\Profession;
 
 class ProfessionsTableSeeder extends Seeder {
 
@@ -17,20 +17,14 @@ class ProfessionsTableSeeder extends Seeder {
 
         DB::table('professions')->truncate();
         //$faker = Faker\Factory::create();
+        $professions = ['plumber','electrician','mechanical','Carpenter','Typist','Civil Engineer'];
 
-            Type::create([
-
-                'profession'           => 'plumber'
+        for($i=0;$i<= count($professions);$i++) {
+            Profession::create([
+                'profession' => $professions[$i]
             ]);
-            Type::create([
-
-                'profession'           => 'carpenter'
-            ]);
-            Type::create([
-
-                'profession'           => 'programmer'
-            ]);
-        $this->command->info('UsersTypes table seeded!');
+        }
+        $this->command->info('Requests table seeded!');
     }
 
 }

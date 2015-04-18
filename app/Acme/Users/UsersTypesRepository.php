@@ -31,13 +31,12 @@ class UsersTypesRepository extends AbstractRepository {
 
     public function getProviders() {
         return DB::table('users')
-                ->join('users_types', 'users.id', '=', 'users_types.user_id')->join('users_professions','users.id','=','users_professions.user_id')->get();
+                ->join('users_types', 'users.id', '=', 'users_types.user_id')->join('users_professions','users.id','=','users_professions.user_id')->where('users_types.type_id','=','1')->get();
     }
 
     public function findProviderById($id) {
         return User::find($id);
     }
-
 
 
 }
