@@ -46,7 +46,7 @@
  * all requests made by the customer no matter the response is
  * */
 
-//Route::get('/', 'WelcomeController@index');
+Route::get('/', 'WelcomeController@index');
 //
 //Route::get('home', 'HomeController@index');
 
@@ -65,6 +65,8 @@ Route::group(['prefix'=>'api','middleware'=>'auth.basic'], function () {
 	Route::post('requests/customer/create','Api\RequestController@postCreateRequest');
 	// route to show a request
 	Route::get('requests/{id}','Api\RequestController@getShowRequest');
+	// route to response by provider
+	Route::post('requests/response','Api\RequestController@postUpdateResponseRequest');
 	// show all providers - Create A Request Page
 	Route::resource('providers','Api\ProviderController',['only'=>'index']);
 

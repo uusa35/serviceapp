@@ -17,7 +17,9 @@ class ProfessionsTableSeeder extends Seeder {
 
         DB::table('professions')->truncate();
         //$faker = Faker\Factory::create();
-        $professions = ['plumber','electrician','mechanical','Carpenter','Typist','Civil Engineer'];
+        $professions = ['plumber','electrician','mechanical','Carpenter','Typist','Civil Engineer',
+        'Doctor','Driver','Graphic Designer','PHP Developer', 'IOS Developer'
+        ];
 
         for($i=0;$i<= count($professions);$i++) {
             Profession::create([

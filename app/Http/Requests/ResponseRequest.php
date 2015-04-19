@@ -2,7 +2,7 @@
 
 use App\Http\Requests\Request;
 
-class CreateRequest extends Request {
+class ResponseRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -11,7 +11,7 @@ class CreateRequest extends Request {
 	 */
 	public function authorize()
 	{
-		return true;
+		return false;
 	}
 
 	/**
@@ -23,10 +23,9 @@ class CreateRequest extends Request {
 	{
 		return [
 			//
-			'provider_id' 	=> 'required|integer|between:0,2',
-			'description'	=> 'required|min:5',
-			'time'			=> 'required',
-			'date'			=> 'required'
+			'provider_id' 	=> 'required|integer',
+			'id'			=> 'required|integer',
+			'provider_response' => 'required|integer|between:0,2'
 		];
 	}
 

@@ -29,7 +29,8 @@ class RequestsRepository extends AbstractRepository implements InterfaceReposito
         /*
          * all requests according to a provider
          * */
-        return $this->model->where('provider_id','=',$provider_id)->where('provider_response','=',$status)->take(10)->get();
+        return $this->model->where('provider_id','=',$provider_id)
+            ->where('provider_response','=',$status)->take(10)->get();
 
     }
 
@@ -37,7 +38,8 @@ class RequestsRepository extends AbstractRepository implements InterfaceReposito
         /*
          * all requests according to a customer
          * */
-        return $this->model->where('customer_id','=',Auth::id())->where('provider_response','=',$status)->take(10)->get();
+        return $this->model->where('customer_id','=',Auth::id())
+            ->where('provider_response','=',$status)->take(10)->get();
 
     }
 
@@ -45,9 +47,23 @@ class RequestsRepository extends AbstractRepository implements InterfaceReposito
     {
         if ($this->model->find($id)) {
             return DB::table('requests')->join('users', 'requests.provider_id', '=', 'users.id')
-                ->join('users_professions', 'requests.provider_id', '=', 'users_professions.id')->where('requests.id', '=', $id)
+                ->join('users_professions', 'requests.provider_id', '=', 'users_professions.id')
+                ->where('requests.id', '=', $id)
                 ->select('requests.*', 'users.name', 'users.area')->get();
         }
+        return ['No Such Record !!!'];
+    }
+
+
+    public function updateResponse($provider_id,$provider_response,$request_id) {
+
+        if ($this->model->find($request_id)) {
+
+        return DB::table('requests')->where('id','=',$request_id)
+                ->where('provider_id','=',$provider_id)
+                ->update(['provider_response'=>$provider_response]);
+        }
+
         return ['No Such Record !!!'];
     }
 
