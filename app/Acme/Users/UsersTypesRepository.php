@@ -32,7 +32,8 @@ class UsersTypesRepository extends AbstractRepository {
     public function getProviders() {
         return DB::table('users')
                 ->join('users_types', 'users.id', '=', 'users_types.user_id')->join('users_professions','users.id','=','users_professions.user_id')
-                ->where('users_types.type_id','=','1')->select('users.name','users.email','users.area','users_professions.*')->get();
+                ->join('professions','users_professions.profession_id','=','professions.id')->where('users_types.type_id','=','1')
+                ->select('users.name','users.email','users.area','users_professions.*','professions.profession')->get();
     }
 
     public function findProviderById($id) {
