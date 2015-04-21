@@ -60,7 +60,7 @@ class AuthController extends Controller {
 			// return redirect()->intended($this->redirectPath());
 		}
 		//return redirect($this->loginPath())->withInput($request->only('email', 'remember'))->withErrors(array('email' => $this->getFailedLoginMessage()));
-		return $this->getJsonResponse('Wrong Username or Password !!!', '200');
+		return $this->getJsonResponse('Wrong Username or Password !!!', '404');
 	}
 
 	public function getRegister() {
