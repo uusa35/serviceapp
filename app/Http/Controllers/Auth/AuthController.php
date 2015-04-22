@@ -2,6 +2,7 @@
 
 use App\Acme\Professions\ProfessionRepository;
 use App\Acme\Types\TypeRepository;
+use App\Acme\Users\UsersTypesRepository;
 use App\Commands\UserPostRegisterCommand;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
@@ -11,6 +12,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use App\Acme\Api\ApiMethods;
 use \Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller {
 
@@ -26,6 +28,7 @@ class AuthController extends Controller {
 	*/
 	public $type;
 	public $profession;
+	public $userType;
 
 	use AuthenticatesAndRegistersUsers;
 	use ApiMethods;
@@ -37,12 +40,13 @@ class AuthController extends Controller {
 	 * @param  \Illuminate\Contracts\Auth\Registrar  $registrar
 	 * @return void
 	 */
-	public function __construct(Guard $auth, Registrar $registrar, TypeRepository $type, ProfessionRepository $profession)
+	public function __construct(Guard $auth, Registrar $registrar, TypeRepository $type, ProfessionRepository $profession, UsersTypesRepository $userType)
 	{
 		$this->auth = $auth;
 		$this->registrar = $registrar;
 		$this->type = $type;
 		$this->profession = $profession;
+		$this->userType = $userType;
 
 		$this->middleware('guest', ['except' => 'getLogout']);
 	}
@@ -56,7 +60,8 @@ class AuthController extends Controller {
 		$this->validate($request, array('email' => 'required|email', 'password' => 'required'));
 		$credentials = $request->only('email', 'password');
 		if ($this->auth->attempt($credentials, true)) {
-			return $this->getJsonResponse('Login Success !!','200');
+			$user_type = $this->userType->getType(Auth::id());
+			return $this->getJsonSuccess(['user_type'=> $user_type,'message'=>'Login Success !!'],'200');
 			// return redirect()->intended($this->redirectPath());
 		}
 		//return redirect($this->loginPath())->withInput($request->only('email', 'remember'))->withErrors(array('email' => $this->getFailedLoginMessage()));

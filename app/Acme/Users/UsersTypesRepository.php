@@ -22,6 +22,9 @@ class UsersTypesRepository extends AbstractRepository {
 
     }
 
+    public function getType($user_id) {
+        return $this->model->where('user_id','=',$user_id)->get();
+    }
     public function postTypeId ($type_id,$user_id) {
          $this->model->create([
             'type_id' =>  $type_id,
