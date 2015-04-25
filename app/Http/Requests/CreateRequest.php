@@ -23,7 +23,7 @@ class CreateRequest extends Request {
 	{
 		return [
 			//
-			'provider_id' 	=> 'required|integer|between:0,2',
+			'provider_id' 	=> 'required|integer',
 			'description'	=> 'required|min:5',
 			'time'			=> 'required',
 			'date'			=> 'required'
