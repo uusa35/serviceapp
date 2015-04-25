@@ -41,7 +41,6 @@ class RequestController extends Controller {
 		// all inbox for customer according to status 0 - 1 - 2
 		$requestCustomer = $this->requestRepo->getCustomerRequests($status)->toArray();
 		if (! $requestCustomer) {
-			return Auth::id();
 			return $this->getJsonResponse('No Requests !!');
 		}
 		return $this->getJsonSuccess($requestCustomer,'200');
